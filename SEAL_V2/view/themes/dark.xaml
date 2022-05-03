@@ -1,0 +1,51 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:SEAL_V2.view.themes"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <SolidColorBrush x:Key="Background" Color="#121212"/>
+    <SolidColorBrush x:Key="MenuBasr" Color="Green"/>
+    <!--User customizable-->
+    <SolidColorBrush x:Key="MenuButton" Color="#AA67F9"/>
+    <SolidColorBrush x:Key="MenuButtonSelected" Color="#FF892CF5"/>
+    <SolidColorBrush x:Key="SecondaryColor" Color="#03DAC6"/>
+    <SolidColorBrush x:Key="SecondaryColorPressed" Color="#018786"/>
+    <SolidColorBrush x:Key="SecondaryVariantColor" Color="#FF892CF5"/>
+    <SolidColorBrush x:Key="SecondaryVariantColorPressed" Color="#FF892CF5"/>
+    <SolidColorBrush x:Key="Highlight" Color="#03DAC6"/>
+    
+    <SolidColorBrush x:Key="Separator" Color="Gray"/>
+    <SolidColorBrush x:Key="OnBackground" Color="White"/>
+    <SolidColorBrush x:Key="Success" Color="#43D565"/>
+    <SolidColorBrush x:Key="ConnectingStartColor" Color="#FF86D498"/>
+    <SolidColorBrush x:Key="ConnectingEndColor" Color="#43D565"/>
+    <SolidColorBrush x:Key="ErrorStartColor" Color="#FFFF778F"/>
+    <SolidColorBrush x:Key="ErrorEndColor" Color="#FFFD2E52"/>
+    <SolidColorBrush x:Key="ExecutingStartColor" Color="#FF91CBFF"/>
+    <SolidColorBrush x:Key="ExecutingEndColor" Color="#FF0085FD"/>
+    <SolidColorBrush x:Key="NewItem" Color="#68A451"/>
+    <SolidColorBrush x:Key="RemovedItem" Color="#D6544E"/>
+    <SolidColorBrush x:Key="DowngradedItem" Color="#58A7D7"/>
+    <SolidColorBrush x:Key="DuplicateItem" Color="#F09D48"/>
+    <SolidColorBrush x:Key="UpgradedItem" Color="#EBE164"/>
+    <SolidColorBrush x:Key="EditItem" Color="#58A7D7"/>
+    <SolidColorBrush x:Key="FolderEmpty" Color="#FFFFF2B6"/>
+    <SolidColorBrush x:Key="FolderContains" Color="#FDD835"/>
+    <SolidColorBrush x:Key="InProgress" Color="#F09D48"/>
+    <SolidColorBrush x:Key="Excel" Color="#FF298553"/>
+    <Color x:Key="ToggleButtonBackOffAnimate">#2F2F2F</Color>
+    <Color x:Key="ToggleButtonBackOnAnimate">#2ED058</Color>
+    <SolidColorBrush x:Key="ToggleButtonBackOff" Color="#2F2F2F"/>
+    <SolidColorBrush x:Key="ToggleButtonBackOn" Color="#2ED058"/>
+
+    <SolidColorBrush x:Key="01dp" Color="#1D1D1D"/>
+    <SolidColorBrush x:Key="02dp" Color="#212121"/>
+    <SolidColorBrush x:Key="03dp" Color="#242424"/>
+    <SolidColorBrush x:Key="04dp" Color="#272727"/>
+    <SolidColorBrush x:Key="06dp" Color="#2C2C2C"/>
+    <SolidColorBrush x:Key="08dp" Color="#2D2D2D"/>
+    <SolidColorBrush x:Key="12dp" Color="#323232"/>
+    <SolidColorBrush x:Key="16dp" Color="#353535"/>
+    <SolidColorBrush x:Key="24dp" Color="#373737"/>
+
+
+</ResourceDictionary>

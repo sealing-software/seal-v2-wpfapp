@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="SEAL_V2.view.usercontrolobjects.UserAccountButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:SEAL_V2.view.usercontrolobjects"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Storyboard x:Key="FadeAccountNotification">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="AccountNotifications">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:03" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:04" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:09" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:11" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="UserAccountNotification">
+                <SplineThicknessKeyFrame KeyTime="00:00:00" Value="0,0,-570,0"/>
+                <SplineThicknessKeyFrame KeyTime="00:00:03" Value="0,0,-570,0"/>
+                <SplineThicknessKeyFrame KeyTime="00:00:04" Value="0,0,30,0"/>
+                <SplineThicknessKeyFrame KeyTime="00:00:08" Value="0,0,30,0"/>
+                <SplineThicknessKeyFrame KeyTime="00:00:09" Value="0,0,-570,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="FadeInAccountNotificationFast">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="AccountNotifications">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.5" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="UserAccountNotification">
+                <SplineThicknessKeyFrame KeyTime="00:00:00" Value="0,0,-570,0"/>
+                <SplineThicknessKeyFrame KeyTime="00:00:00.5" Value="0,0,30,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="FadeOutAccountNotificationFast">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="AccountNotifications">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.5" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" Storyboard.TargetName="UserAccountNotification">
+                <SplineThicknessKeyFrame KeyTime="00:00:00" Value="0,0,30,0"/>
+                <SplineThicknessKeyFrame KeyTime="00:00:00.5" Value="0,0,-570,0"/>
+            </ThicknessAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ShowPopup">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="popupGrid">
+                <EasingDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="00:00:00.05" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid Panel.ZIndex="1" Background="{DynamicResource Background}">
+        <Viewbox Stretch="Uniform">
+            <Grid>
+                <Grid Width="600">
+                    <Grid Width="600" HorizontalAlignment="Right" Margin="0,0,30,0" Panel.ZIndex="2">
+                        <Grid x:Name="UserAccountNotification" Margin="0,0,-570,0">
+                            <TextBlock x:Name="AccountNotifications" Style="{DynamicResource TitleBarText}" Opacity="0" HorizontalAlignment="Right" Panel.ZIndex="0"/>
+                            <!--<TextBlock x:Name="AccountNotificationsa" Text="testttt" Style="{DynamicResource TitleBarText}" Opacity="1" HorizontalAlignment="Right" Panel.ZIndex="0"/>-->
+                        </Grid>
+                    </Grid>
+                    <materialdesign:PackIcon Name="AccountIcon" HorizontalAlignment="Right" Kind="Account" Width="60" Height="60" Background="{DynamicResource Background}" Panel.ZIndex="1" MouseEnter="AccountIcon_MouseEnter"  MouseLeave="AccountIcon_MouseLeave"/>
+                    <materialdesign:PackIcon Name="Button" HorizontalAlignment="Right" Width="60" Height="60" Background="{DynamicResource Background}" Panel.ZIndex="4" Opacity="0" MouseLeftButtonUp="PopupBoxIcon_MouseLeftButtonUp" MouseEnter="AccountPopUpBox_MouseEnter" MouseLeave="PopupBoxIcon_MouseLeave"/>
+                    <!--<materialdesign:PopupBox x:Name="AccountPopUpBox" PlacementMode="BottomAndAlignRightEdges" HorizontalAlignment="Right" Foreground="AliceBlue" Panel.ZIndex="3" MouseLeave="AccountPopUpBox_MouseLeave">
+                    <materialdesign:PopupBox.ToggleContent>
+                        <materialdesign:PackIcon x:Name="PopupBoxIcon" Kind="None" Foreground="{DynamicResource OnBackground}" Width="60" Height="60" MouseLeftButtonDown="PopupBoxIcon_MouseLeftButtonDown"/>
+                    </materialdesign:PopupBox.ToggleContent>
+                    <StackPanel x:Name="AccountPopupBox" Width="300" Background="{DynamicResource 24dp}" MouseLeave="AccountPopUpBox_MouseLeave">
+                        <Button x:Name="LoginButton" Content="Login" Style="{DynamicResource MaterialDesignPopupBoxButton}" Click="LoginButton_Click"/>
+                        <Button Content="Log in" Style="{DynamicResource MaterialDesignPopupBoxButton}"/>
+                    </StackPanel>
+                </materialdesign:PopupBox>-->
+                </Grid>
+                <Popup x:Name="accountPopup" AllowsTransparency="True" StaysOpen="False" Opened="accountPopup_Opened" Closed="accountPopup_Closed">
+                    <Grid Width="600">
+                        <Grid x:Name="popupGrid" Opacity="1" MouseLeave="popupGrid_MouseLeave" HorizontalAlignment="Right">
+                            <Rectangle x:Name="popupBox" Fill="{DynamicResource 24dp}" Width="250" Height="80" RadiusX="30" RadiusY="30"/>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="20,0,20,0">
+                                <Grid x:Name="NoAccountPopup" Visibility="Visible">
+                                    <TextBlock x:Name="loginText" Text="Login" Style="{DynamicResource MainStatusText}"/>
+                                    <Rectangle x:Name="loginRectangle" Width="auto" Height="auto" Fill="{DynamicResource 04dp}" Opacity="0" RadiusX="20" RadiusY="20" Margin="-20,0,-20,0" MouseEnter="loginRectangle_MouseEnter" MouseLeave="loginRectangle_MouseLeave" MouseLeftButtonUp="loginRectangle_MouseLeftButtonUp"/>
+                                </Grid>
+                                <Grid x:Name="AcountPopup" VerticalAlignment="Center" Visibility="Collapsed">
+                                    <StackPanel Orientation="Vertical">
+                                        <Grid>
+                                            <TextBlock x:Name="AccountText" Text="Account" Style="{DynamicResource MainStatusText}"/>
+                                            <Rectangle x:Name="AccountRectangle" Width="auto" Height="auto" Fill="{DynamicResource 04dp}" Opacity="0" RadiusX="20" RadiusY="20" Margin="-20,0,-20,0" MouseEnter="loginRectangle_MouseEnter" MouseLeave="loginRectangle_MouseLeave" MouseLeftButtonUp="loginRectangle_MouseLeftButtonUp"/>
+                                        </Grid>
+                                        <Grid>
+                                            <TextBlock x:Name="SignoutText" Text="Sign Out" Style="{DynamicResource MainStatusText}"/>
+                                            <Rectangle x:Name="SignoutRectangle" Width="auto" Height="auto" Fill="{DynamicResource 04dp}" Opacity="0" RadiusX="20" RadiusY="20" Margin="-20,0,-20,0" MouseEnter="SignoutRectangle_MouseEnter"  MouseLeave="SignoutRectangle_MouseLeave"  MouseLeftButtonUp="SignoutRectangle_MouseLeftButtonUp"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                    
+                </Popup>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</UserControl>

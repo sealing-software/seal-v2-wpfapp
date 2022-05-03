@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{96635680-F44E-4425-8220-18A8FFDDE964}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SEAL_V2</RootNamespace>
+    <AssemblyName>SEAL_V2</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <LangVersion>8.0</LangVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>SEAL_Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MaterialDesignColors, Version=2.0.0.2422, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.2.0.0\lib\net452\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=4.0.0.2422, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.4.0.0\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Registry, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Registry.5.0.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.5.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.2.0.0\lib\net40\WpfAnimatedGif.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.1.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.1.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.1.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.1.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.1.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="db\DatabaseInterface.cs" />
+    <Compile Include="model\Action.cs" />
+    <Compile Include="model\Capture.cs" />
+    <Compile Include="model\CurrentSystem.cs" />
+    <Compile Include="model\Directory.cs" />
+    <Compile Include="model\ExcelGenerator.cs" />
+    <Compile Include="model\Group.cs" />
+    <Compile Include="model\History.cs" />
+    <Compile Include="model\License.cs" />
+    <Compile Include="model\MessageProtocol.cs" />
+    <Compile Include="model\MessageRelay.cs" />
+    <Compile Include="model\ObjectIDManager.cs" />
+    <Compile Include="model\objectIDRequirements.cs" />
+    <Compile Include="model\Pages.cs" />
+    <Compile Include="model\Permission.cs" />
+    <Compile Include="model\Sequence.cs" />
+    <Compile Include="model\SoftwareAudit.cs" />
+    <Compile Include="model\SoftwareCompare.cs" />
+    <Compile Include="model\SoftwareComparison.cs" />
+    <Compile Include="model\SoftwareList.cs" />
+    <Compile Include="model\StaticCapture.cs" />
+    <Compile Include="model\StatusMessage.cs" />
+    <Compile Include="model\SystemObject.cs" />
+    <Compile Include="model\UserInfo.cs" />
+    <Compile Include="view\AccountPopupAccount.xaml.cs">
+      <DependentUpon>AccountPopupAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\AccountPopupLicense.xaml.cs">
+      <DependentUpon>AccountPopupLicense.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\AccountPopupSecurity.xaml.cs">
+      <DependentUpon>AccountPopupSecurity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\CapturePage.xaml.cs">
+      <DependentUpon>CapturePage.xaml</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="view\FullSystemPage.xaml.cs">
+      <DependentUpon>FullSystemPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\HomeCapturePage.xaml.cs">
+      <DependentUpon>HomeCapturePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\HomeHistoryPage.xaml.cs">
+      <DependentUpon>HomeHistoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\HomeSequencePage.xaml.cs">
+      <DependentUpon>HomeSequencePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\HomeSystemPage.xaml.cs">
+      <DependentUpon>HomeSystemPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="view\ReportPage.xaml.cs">
+      <DependentUpon>ReportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\SettingsPageFileStructure.xaml.cs">
+      <DependentUpon>SettingsPageFileStructure.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\SettingsPageGroups.xaml.cs">
+      <DependentUpon>SettingsPageGroups.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\SettingsPageGroupsColors.xaml.cs">
+      <DependentUpon>SettingsPageGroupsColors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\SettingsPageGroupsName.xaml.cs">
+      <DependentUpon>SettingsPageGroupsName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\SettingsPageGroupsPermissions.xaml.cs">
+      <DependentUpon>SettingsPageGroupsPermissions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\SettingsPageGroupsUsers.xaml.cs">
+      <DependentUpon>SettingsPageGroupsUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\SettingsPageSequence.xaml.cs">
+      <DependentUpon>SettingsPageSequence.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\SettingsPageUsers.xaml.cs">
+      <DependentUpon>SettingsPageUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\AccountOptionItem.xaml.cs">
+      <DependentUpon>AccountOptionItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\AuditStatus.xaml.cs">
+      <DependentUpon>AuditStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\CaptureItem.xaml.cs">
+      <DependentUpon>CaptureItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\DatabaseStatus.xaml.cs">
+      <DependentUpon>DatabaseStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\DirectoryItem.xaml.cs">
+      <DependentUpon>DirectoryItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\GroupContainerBubble.xaml.cs">
+      <DependentUpon>GroupContainerBubble.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\GroupRemove.xaml.cs">
+      <DependentUpon>GroupRemove.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\HalfScreenListItem.xaml.cs">
+      <DependentUpon>HalfScreenListItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\MenuBarOverlay.xaml.cs">
+      <DependentUpon>MenuBarOverlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\MenuItem.xaml.cs">
+      <DependentUpon>MenuItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\PermissionsListItem.xaml.cs">
+      <DependentUpon>PermissionsListItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\Separator.xaml.cs">
+      <DependentUpon>Separator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\SequenceRemove.xaml.cs">
+      <DependentUpon>SequenceRemove.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\SettingsListItem.xaml.cs">
+      <DependentUpon>SettingsListItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\StandardButton.xaml.cs">
+      <DependentUpon>StandardButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\StatusBar.xaml.cs">
+      <DependentUpon>StatusBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\SubMenuItem.xaml.cs">
+      <DependentUpon>SubMenuItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\TitleBarButtons.xaml.cs">
+      <DependentUpon>TitleBarButtons.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\ToggleItem.xaml.cs">
+      <DependentUpon>ToggleItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\UserAccountButton.xaml.cs">
+      <DependentUpon>UserAccountButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\UserLogin.xaml.cs">
+      <DependentUpon>UserLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\usercontrolobjects\UserRemove.xaml.cs">
+      <DependentUpon>UserRemove.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="view\VerifyPage.xaml.cs">
+      <DependentUpon>VerifyPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="view\AccountPopupAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\AccountPopupLicense.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\AccountPopupSecurity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\CapturePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\FullSystemPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\HomeCapturePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\HomeHistoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\HomeSequencePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\HomeSystemPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\ReportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\SettingsPageFileStructure.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\SettingsPageGroups.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\SettingsPageGroupsColors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\SettingsPageGroupsName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\SettingsPageGroupsPermissions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\SettingsPageGroupsUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\SettingsPageSequence.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\SettingsPageUsers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\themes\dark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\AccountOptionItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\AuditStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\CaptureItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\DatabaseStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\DirectoryItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\GroupContainerBubble.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\GroupRemove.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\HalfScreenListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\MenuBarOverlay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\MenuItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\PermissionsListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\Separator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\SequenceRemove.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\SettingsListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\StandardButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\StatusBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\SubMenuItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\TitleBarButtons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\ToggleItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\UserAccountButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\UserLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\usercontrolobjects\UserRemove.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="view\VerifyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="model\Ecp.cs" />
+    <Compile Include="model\Program.cs" />
+    <Compile Include="model\Project.cs" />
+    <Compile Include="model\Software.cs" />
+    <Compile Include="model\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="db\SEAL.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="helpers\" />
+    <Folder Include="license\" />
+    <Folder Include="viewmodel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="view\images\SEAL_Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="view\images\WaitCover.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SEAL_Logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="view\images\SEAL_Logo_Splash.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets'))" />
+  </Target>
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+  <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
+</Project>

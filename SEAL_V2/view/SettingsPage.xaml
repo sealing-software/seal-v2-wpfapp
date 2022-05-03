@@ -1,0 +1,35 @@
+﻿<Page x:Class="SEAL_V2.view.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:SEAL_V2.view"
+      mc:Ignorable="d" 
+      Title="SettingsPage">
+
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <materialdesign:Card Grid.RowSpan="4" Style="{DynamicResource CardOnBackground}" Width="Auto" Height="Auto" Margin="10">
+                <Viewbox Stretch="Uniform" VerticalAlignment="Top">
+                    <StackPanel x:Name="SettingsOptionsList" Orientation="Vertical" Margin="20" HorizontalAlignment="Left"/>
+                </Viewbox>
+            </materialdesign:Card>
+            <Grid Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="4">
+                <Frame x:Name="SettingsItemPage" NavigationUIVisibility="Hidden" Visibility="Hidden"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

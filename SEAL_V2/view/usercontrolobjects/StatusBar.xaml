@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="SEAL_V2.view.usercontrolobjects.StatusBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SEAL_V2.view.usercontrolobjects"
+             mc:Ignorable="d">
+    <Grid>
+        <Viewbox Stretch="Uniform">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel x:Name="statuspanel" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <TextBlock x:Name="DateAndTime" Style="{DynamicResource TitleBarText}" Width="500"/>
+                </StackPanel>
+                <TextBlock Text="TEST RELEASE 0.2.0" Style="{DynamicResource TitleBarText}" Margin="40,0,0,0" Foreground="{DynamicResource EditItem}"/>
+            </StackPanel>
+
+        </Viewbox>
+    </Grid>
+</UserControl>

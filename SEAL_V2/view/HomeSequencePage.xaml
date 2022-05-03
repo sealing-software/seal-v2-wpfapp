@@ -1,0 +1,87 @@
+﻿<Page x:Class="SEAL_V2.view.HomeSequencePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:SEAL_V2.view"
+      mc:Ignorable="d" 
+      Title="HomeSequencePage">
+
+    <Grid Height="auto" Width="auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.ColumnSpan="3">
+                <Grid>
+                    <Grid x:Name="NoDirectoryView" Height="100" Width="290" Margin="5,20,5,5" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden">
+                        <StackPanel Orientation="Vertical">
+                            <materialdesign:PackIcon Kind="Warning" Foreground="Yellow" Height="40" Width="40" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Sequences cannot be applied to unassigned systems!" FontSize="10" Style="{DynamicResource StandardTextBlockText}" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Assign this system to view available sequences." FontSize="10" Style="{DynamicResource StandardTextBlockText}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="NoSequenceView" Height="100" Width="290" Margin="5,20,5,5" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden">
+                        <StackPanel Orientation="Vertical">
+                            <materialdesign:PackIcon Kind="Warning" Foreground="Yellow" Height="40" Width="40" HorizontalAlignment="Center"/>
+                            <TextBlock Text="There are no sequences available!" FontSize="10" Style="{DynamicResource StandardTextBlockText}" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Create a new sequence for this directory." FontSize="10" Style="{DynamicResource StandardTextBlockText}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="SequenceAssignedView" Visibility="Hidden">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="1" Orientation="Vertical">
+                            <TextBlock x:Name="SequenceName" Text="test" Style="{DynamicResource StandardTextBlockText}" HorizontalAlignment="Center" FontSize="15"/>
+                            <TextBlock x:Name="sequenceDescription" Style="{DynamicResource StandardTextBlockText}" Foreground="Gray" FontSize="7" HorizontalAlignment="Center"/>
+                            <Viewbox Stretch="Uniform" Width="150" Margin="0,5,0,0">
+                                <Grid x:Name="descriptionbubblegrid"/>
+                            </Viewbox>
+                            <TextBlock x:Name="sequencePosition" Style="{DynamicResource StandardTextBlockText}" Foreground="Gray" FontSize="7" HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="sequenceCurrent" Style="{DynamicResource StandardTextBlockText}" Foreground="Gray" FontSize="7" HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="grouptask" Style="{DynamicResource StandardTextBlockText}" FontSize="7" HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="accountpermission" HorizontalAlignment="Center" FontSize="10" Margin="0,10,0,0" Style="{DynamicResource StandardTextBlockText}"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="NewCycleView" Visibility="Hidden">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Cycle Name: " FontSize="13" Style="{DynamicResource StandardTextBlockText}"/>
+                                <TextBox x:Name="cycleName" FontSize="13" Width="280" Style="{DynamicResource LogInTextBox}" TextChanged="cycleName_TextChanged"/>
+                            </StackPanel>
+                            <TextBlock x:Name="nameError" FontSize="10" Style="{DynamicResource AlertTextBlockText}" HorizontalAlignment="Left" Margin="77,0,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="SequenceNotAssignedView" Visibility="Hidden">
+                        
+                    </Grid>
+                </Grid>
+            </Viewbox>
+            <Grid x:Name="LeftArrowGrid" Width="auto" Margin="10,0,0,0" MouseEnter="LeftArrowGrid_MouseEnter" MouseLeave="LeftArrowGrid_MouseLeave" MouseLeftButtonUp="LeftArrowGrid_MouseLeftButtonUp" Visibility="Hidden">
+                <Rectangle Height="auto" Width="auto" Fill="{DynamicResource 16dp}"/>
+                <materialdesign:PackIcon Kind="ChevronLeft" Height="50" Width="50" Foreground="{DynamicResource OnBackground}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+            <Grid x:Name="RightArrowGrid" Grid.Column="2" Margin="0,0,10,0" MouseEnter="RightArrowGrid_MouseEnter" MouseLeave="RightArrowGrid_MouseLeave" MouseLeftButtonUp="RightArrowGrid_MouseLeftButtonUp" Visibility="Hidden">
+                <Rectangle Height="auto" Width="auto" Fill="{DynamicResource 16dp}"/>
+                <materialdesign:PackIcon Kind="ChevronRight" Height="50" Width="50" Foreground="{DynamicResource OnBackground}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+            <Viewbox Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,8">
+                <Grid>
+                    <Grid x:Name="ButtonGrid">
+                        <StackPanel x:Name="ButtonPanel" Orientation="Horizontal" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Grid>
+            </Viewbox>
+        </Grid>
+    </Grid>
+</Page>

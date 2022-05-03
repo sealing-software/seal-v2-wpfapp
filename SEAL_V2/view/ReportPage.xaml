@@ -1,0 +1,470 @@
+﻿<Page x:Class="SEAL_V2.view.ReportPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:SEAL_V2.view"
+      mc:Ignorable="d" 
+      Title="ReportPage">
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <materialdesign:Card Style="{DynamicResource CardOnBackground}" Width="Auto" Height="Auto" Margin="10">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Viewbox Stretch="UniformToFill" Margin="20,20,0,20">
+                        <StackPanel x:Name="CapturePanel" Orientation="Vertical" MouseEnter="CapturePanel_MouseEnter" MouseLeave="CapturePanel_MouseLeave" MouseLeftButtonUp="CapturePanel_MouseLeftButtonUp">
+                            <Grid Width="100" Height="100">
+                                <Rectangle Width="100" Height="100" Fill="{DynamicResource 12dp}" RadiusX="50" RadiusY="50"/>
+                                <materialdesign:PackIcon x:Name="CameraIcon" Kind="Camera" Width="70" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource EditItem}"/>
+                            </Grid>
+                            <Grid Width="100">
+                                <TextBlock Text="Capture" HorizontalAlignment="Center" Style="{DynamicResource StandardTextBlockText}"/>
+                            </Grid>
+                        </StackPanel>
+                    </Viewbox>
+                    <Viewbox Stretch="Uniform" Margin="15,20,15,20">
+                        <StackPanel x:Name="VerifyPanel" Orientation="Vertical" MouseEnter="VerifyPanel_MouseEnter" MouseLeave="VerifyPanel_MouseLeave" MouseLeftButtonUp="VerifyPanel_MouseLeftButtonUp">
+                            <Grid Width="100" Height="100">
+                                <Rectangle Width="100" Height="100" Fill="{DynamicResource 12dp}" RadiusX="50" RadiusY="50"/>
+                                <materialdesign:PackIcon x:Name="CheckIcon" Kind="CheckBold" Width="70" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource EditItem}"/>
+                            </Grid>
+                            <Grid Width="100">
+                                <TextBlock Text="Verify" HorizontalAlignment="Center" Style="{DynamicResource StandardTextBlockText}"/>
+                            </Grid>
+                        </StackPanel>
+                    </Viewbox>
+                    <Viewbox Stretch="Uniform" Margin="0,20,20,20">
+                        <StackPanel x:Name="ComparisonPanel" Orientation="Vertical" MouseEnter="ComparisonPanel_MouseEnter" MouseLeave="ComparisonPanel_MouseLeave" MouseLeftButtonUp="ComparisonPanel_MouseLeftButtonUp">
+                            <Grid Width="100" Height="100">
+                                <Rectangle Width="100" Height="100" Fill="{DynamicResource 12dp}" RadiusX="50" RadiusY="50"/>
+                                <materialdesign:PackIcon x:Name="CompareIcon" Kind="FileCompare" Width="70" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource EditItem}"/>
+                            </Grid>
+                            <Grid Width="100">
+                                <TextBlock Text="Compare" HorizontalAlignment="Center" Style="{DynamicResource StandardTextBlockText}"/>
+                            </Grid>
+                        </StackPanel>
+                    </Viewbox>
+                </StackPanel>
+            </materialdesign:Card>
+            <materialdesign:Card x:Name="SelectionCard" Style="{DynamicResource CardOnBackground}" Grid.Row="1" Width="Auto" Height="Auto" Margin="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox x:Name="CaptureSelectView">
+                        <Grid>
+                            <Grid Width="300" Height="100" Margin="5,0,5,0">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="Select Cycle" FontSize="15" Style="{DynamicResource StandardTextBlockText}"/>
+                                    <ComboBox x:Name="CaptureValues" Width="300" Height="20" Style="{DynamicResource MaterialDesignDataGridComboBox}" Background="{DynamicResource 01dp}" SelectionChanged="CaptureValues_SelectionChanged">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid Width="260">
+                                                    <TextBlock Text="{Binding name}" Foreground="{DynamicResource OnBackground}" Margin="0,0,0,0" FontSize="15" FontFamily="Segoe UI Semibold" Width="100" HorizontalAlignment="Left"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                        <ComboBox.ItemContainerStyle>
+                                            <Style TargetType="{x:Type ComboBoxItem}">
+                                                <Setter Property="BorderBrush" Value="{DynamicResource 06dp}"/>
+                                                <Setter Property="Background" Value="{DynamicResource 06dp}"/>
+                                            </Style>
+                                        </ComboBox.ItemContainerStyle>
+                                    </ComboBox>
+                                    <StackPanel x:Name="CaptureExcelPanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0" Visibility="Hidden" MouseEnter="CaptureExcelPanel_MouseEnter" MouseLeave="CaptureExcelPanel_MouseLeave" MouseLeftButtonUp="CaptureExcelPanel_MouseLeftButtonUp">
+                                        <Grid Width="50" Height="50">
+                                            <Rectangle Width="50" Height="50" Fill="{DynamicResource 12dp}" RadiusX="25" RadiusY="25"/>
+                                            <materialdesign:PackIcon Kind="MicrosoftExcel" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource Excel}"/>
+                                        </Grid>
+                                        <Grid Height="50" Margin="10,0,0,0">
+                                            <TextBlock Text="Excel Export" VerticalAlignment="Center" Style="{DynamicResource StandardTextBlockText}"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Viewbox>
+                    <Viewbox x:Name="VerifySelectView">
+                        <Grid>
+                            <Grid Width="300" Height="100" Margin="5,0,5,0">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="Select Cycle" FontSize="15" Style="{DynamicResource StandardTextBlockText}"/>
+                                    <ComboBox x:Name="VerifyValues" Width="300" Height="20" Style="{DynamicResource MaterialDesignDataGridComboBox}" Background="{DynamicResource 01dp}" SelectionChanged="VerifyValues_SelectionChanged">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid Width="260">
+                                                    <TextBlock Text="{Binding name}" Foreground="{DynamicResource OnBackground}" Margin="0,0,0,0" FontSize="15" FontFamily="Segoe UI Semibold" Width="100" HorizontalAlignment="Left"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                        <ComboBox.ItemContainerStyle>
+                                            <Style TargetType="{x:Type ComboBoxItem}">
+                                                <Setter Property="BorderBrush" Value="{DynamicResource 06dp}"/>
+                                                <Setter Property="Background" Value="{DynamicResource 06dp}"/>
+                                            </Style>
+                                        </ComboBox.ItemContainerStyle>
+                                    </ComboBox>
+                                    <StackPanel x:Name="VerifyExcelPanel" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0" Visibility="Hidden" MouseLeftButtonUp="VerifyExcelPanel_MouseLeftButtonUp" MouseEnter="VerifyExcelPanel_MouseEnter" MouseLeave="VerifyExcelPanel_MouseLeave">
+                                        <Grid Width="50" Height="50">
+                                            <Rectangle Width="50" Height="50" Fill="{DynamicResource 12dp}" RadiusX="25" RadiusY="25"/>
+                                            <materialdesign:PackIcon Kind="MicrosoftExcel" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource Excel}"/>
+                                        </Grid>
+                                        <Grid Height="50" Margin="10,0,0,0">
+                                            <TextBlock Text="Excel Export" VerticalAlignment="Center" Style="{DynamicResource StandardTextBlockText}"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Viewbox>
+                    <Grid Grid.Row="1" Margin="10">
+                        <Viewbox>
+                            <StackPanel x:Name="CaptureButtonPanel" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Viewbox>
+                    </Grid>
+                </Grid>
+            </materialdesign:Card>
+            <materialdesign:Card x:Name="infoCard" Style="{DynamicResource CardOnBackground}" Grid.Row="2" Grid.RowSpan="2" Width="Auto" Height="Auto" Margin="10" Visibility="Hidden">
+                <Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="6*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Viewbox>
+                            <TextBlock x:Name="VerifyResults" Style="{DynamicResource StandardTextBlockText}"/>
+                        </Viewbox>
+                        <Viewbox Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Grid Height="250" Width="250" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                                        <Grid Margin="0,8,5,0">
+                                            <materialdesign:PackIcon Kind="Circle" Height="20" Width="20" Foreground="{DynamicResource OnBackground}"/>
+                                            <materialdesign:PackIcon Kind="Equal" Height="20" Width="20" Foreground="{DynamicResource 04dp}"/>
+                                        </Grid>
+                                        <TextBlock Text="No Change: " Style="{DynamicResource StandardTextBlockText}"/>
+                                        <TextBlock x:Name="nochangetotal" Style="{DynamicResource StandardTextBlockText}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                                        <Grid Margin="0,8,5,0">
+                                            <materialdesign:PackIcon Kind="Circle" Height="20" Width="20" Foreground="{DynamicResource 04dp}"/>
+                                            <materialdesign:PackIcon Kind="NewReleases" Height="20" Width="20" Foreground="{DynamicResource NewItem}"/>
+                                        </Grid>
+                                        <TextBlock Text="New Items: " Style="{DynamicResource StandardTextBlockText}"/>
+                                        <TextBlock x:Name="newtotal" Style="{DynamicResource StandardTextBlockText}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                                        <Grid Margin="0,8,5,0">
+                                            <materialdesign:PackIcon Kind="Circle" Height="20" Width="20" Foreground="{DynamicResource UpgradedItem}"/>
+                                            <materialdesign:PackIcon Kind="ArrowUpBold" Height="20" Width="20" Foreground="{DynamicResource 04dp}"/>
+                                        </Grid>
+                                        <TextBlock Text="Upgrades: " Style="{DynamicResource StandardTextBlockText}"/>
+                                        <TextBlock x:Name="upgradetotal" Style="{DynamicResource StandardTextBlockText}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                                        <Grid Margin="0,8,5,0">
+                                            <materialdesign:PackIcon Kind="Circle" Height="20" Width="20" Foreground="{DynamicResource DowngradedItem}"/>
+                                            <materialdesign:PackIcon Kind="ArrowDownBold" Height="20" Width="20" Foreground="{DynamicResource 04dp}"/>
+                                        </Grid>
+                                        <TextBlock Text="Downgrades: " Style="{DynamicResource StandardTextBlockText}"/>
+                                        <TextBlock x:Name="downgradetotal" Style="{DynamicResource StandardTextBlockText}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                                        <Grid Margin="0,8,5,0">
+                                            <materialdesign:PackIcon Kind="Circle" Height="20" Width="20" Foreground="{DynamicResource RemovedItem}"/>
+                                            <materialdesign:PackIcon Kind="RemoveBold" Height="20" Width="20" Foreground="{DynamicResource 04dp}"/>
+                                        </Grid>
+                                        <TextBlock Text="Removed: " Style="{DynamicResource StandardTextBlockText}"/>
+                                        <TextBlock x:Name="removetotal" Style="{DynamicResource StandardTextBlockText}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                                        <Grid Margin="0,8,5,0">
+                                            <materialdesign:PackIcon Kind="Circle" Height="20" Width="20" Foreground="{DynamicResource DuplicateItem}"/>
+                                            <materialdesign:PackIcon Kind="ContentDuplicate" Height="15" Width="15" Margin="0,0,0,4" Foreground="{DynamicResource 04dp}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                        <TextBlock Text="Duplicates: " Style="{DynamicResource StandardTextBlockText}"/>
+                                        <TextBlock x:Name="duplicatetotal" Style="{DynamicResource StandardTextBlockText}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </Viewbox>
+
+                    </Grid>
+                </Grid>
+            </materialdesign:Card>
+            <materialdesign:Card x:Name="MainCard" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="4" Style="{DynamicResource CardOnBackground}" Width="auto" Height="auto" Margin="10" Visibility="Visible">
+                <Grid>
+                    <Grid x:Name="SoftwareCaptureView" Visibility="Hidden">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="20*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <!--<Viewbox HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="15,5,0,0">
+                                <materialdesign:PackIcon Kind="Timelapse" Foreground="{DynamicResource OnBackground}" VerticalAlignment="Center" Width="20" Height="20" Margin="0,3,0,0"/>
+                                <TextBlock Text="Executed in: " FontSize="20" Style="{DynamicResource StandardTextBlockText}" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="TimeElapsedText" FontSize="20" Style="{DynamicResource StandardTextBlockText}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Viewbox>-->
+                        <Viewbox HorizontalAlignment="Center">
+                            <Grid x:Name="CaptureVisibilityToggle" Width="600" Height="100" MouseLeftButtonUp="CaptureVisibilityToggle_MouseLeftButtonUp"/>
+                        </Viewbox>
+                        <Viewbox HorizontalAlignment="Right">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,15,0">
+                                <materialdesign:PackIcon Kind="Magnify" Foreground="{DynamicResource OnBackground}" VerticalAlignment="Center" Width="30" Height="30"/>
+                                <TextBox x:Name="CaptureSearchBox" Width="300" FontSize="20" VerticalAlignment="Center" Style="{DynamicResource LogInTextBox}" TextChanged="CaptureSearchBox_TextChanged"/>
+                            </StackPanel>
+                        </Viewbox>
+                        <DataGrid x:Name="CapturedSoftwareGrid" Margin="10" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Row="1" Height="auto" Background="{x:Null}" Foreground="{DynamicResource OnBackground}" EnableColumnVirtualization="True" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" FontSize="20" FontFamily="Segoe UI Semibold" EnableRowVirtualization="True">
+                            <DataGrid.Resources>
+                                <Style TargetType="ScrollBar">
+                                    <Setter Property="Background" Value="{x:Null}" />
+                                </Style>
+                            </DataGrid.Resources>
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Visibility" Width="110" SortMemberPath="Visible" CanUserSort="True">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <materialdesign:PackIcon Width="25" Height="25" HorizontalAlignment="Center">
+                                                <materialdesign:PackIcon.Style>
+                                                    <Style TargetType="materialdesign:PackIcon">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Visible}" Value="0">
+                                                                <Setter Property="Kind" Value="EyeOff"/>
+                                                                <Setter Property="Foreground" Value="{DynamicResource RemovedItem}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Visible}" Value="1">
+                                                                <Setter Property="Kind" Value="Eye"/>
+                                                                <Setter Property="Foreground" Value="{DynamicResource NewItem}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </materialdesign:PackIcon.Style>
+                                            </materialdesign:PackIcon>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Name" Binding="{Binding SoftwareName}" Width="300"/>
+                                <DataGridTextColumn Header="Version" Binding="{Binding SoftwareVersion}" Width="200"/>
+                                <DataGridTextColumn Header="Vendor" Binding="{Binding SoftwareVendor}" Width="200"/>
+                                <DataGridTextColumn Header="Type" Binding="{Binding SoftwareType}" Width="200"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Grid Grid.Row="2">
+                            <Viewbox HorizontalAlignment="Left">
+                                <Grid Width="900">
+                                    <StackPanel Orientation="Horizontal" Margin="10,0,10,0">
+                                        <TextBlock Text="Total: " Style="{DynamicResource StandardTextBlockText}"/>
+                                        <TextBlock x:Name="comparetotalitems" Style="{DynamicResource StandardTextBlockText}" Margin="0,0,15,0"/>
+                                        <TextBlock Text="Visible: " Style="{DynamicResource StandardTextBlockText}"/>
+                                        <TextBlock x:Name="comparevisibleitems" Style="{DynamicResource StandardTextBlockText}" Margin="0,0,15,0"/>
+                                        <TextBlock Text="Application: " Style="{DynamicResource StandardTextBlockText}"/>
+                                        <TextBlock x:Name="compareapplicationitems" Style="{DynamicResource StandardTextBlockText}" Margin="0,0,15,0"/>
+                                        <TextBlock Text="Registry: " Style="{DynamicResource StandardTextBlockText}"/>
+                                        <TextBlock x:Name="compareregistryitems" Style="{DynamicResource StandardTextBlockText}" Margin="0,0,15,0"/>
+                                        <TextBlock Text="Driver: " Style="{DynamicResource StandardTextBlockText}"/>
+                                        <TextBlock x:Name="comparedriveritems" Style="{DynamicResource StandardTextBlockText}" Margin="0,0,15,0"/>
+                                        <TextBlock Text="Security: " Style="{DynamicResource StandardTextBlockText}"/>
+                                        <TextBlock x:Name="comparesecurityitems" Style="{DynamicResource StandardTextBlockText}" Margin="0,0,15,0"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Viewbox>
+                            <Viewbox HorizontalAlignment="Right">
+                                <Grid x:Name="MainButtonGrid" Width="70" Height="16" HorizontalAlignment="Right" Margin="0,0,25,2">
+                                </Grid>
+                            </Viewbox>
+
+                        </Grid>
+
+                        <!--<Grid Grid.Row="1" Margin="10">
+                            <ScrollViewer VerticalScrollBarVisibility="Visible" CanContentScroll="True" Background="Transparent" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+                                
+                            </ScrollViewer>
+                        </Grid>-->
+
+                    </Grid>
+                    <Grid x:Name="VerifySoftwareView" Visibility="Hidden">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="20*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <!--<Viewbox HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="15,5,0,0">
+                                <materialdesign:PackIcon Kind="Timelapse" Foreground="{DynamicResource OnBackground}" VerticalAlignment="Center" Width="20" Height="20" Margin="0,3,0,0"/>
+                                <TextBlock Text="Executed in: " FontSize="20" Style="{DynamicResource StandardTextBlockText}" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="TimeElapsedText" FontSize="20" Style="{DynamicResource StandardTextBlockText}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Viewbox>-->
+                        <Viewbox HorizontalAlignment="Center">
+                            <Grid x:Name="VerifyVisibilityToggle" Width="600" Height="100" MouseLeftButtonUp="VerifyVisibilityToggle_MouseLeftButtonUp"/>
+                        </Viewbox>
+                        <Viewbox HorizontalAlignment="Right">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,5,15,0">
+                                <materialdesign:PackIcon Kind="Magnify" Foreground="{DynamicResource OnBackground}" VerticalAlignment="Center" Width="30" Height="30"/>
+                                <TextBox x:Name="VerifySearchBox" Width="300" FontSize="20" VerticalAlignment="Center" Style="{DynamicResource LogInTextBox}" TextChanged="VerifySearchBox_TextChanged"/>
+                            </StackPanel>
+                        </Viewbox>
+                        <DataGrid x:Name="CompareSoftwareGrid" Margin="15" Grid.Row="1" Height="auto" Background="{x:Null}" Foreground="{DynamicResource OnBackground}" EnableColumnVirtualization="True" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" FontSize="20" FontFamily="Segoe UI Semibold" EnableRowVirtualization="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+                            <DataGrid.Resources>
+                                <Style TargetType="ScrollBar">
+                                    <Setter Property="Background" Value="{x:Null}" />
+                                </Style>
+                            </DataGrid.Resources>
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Visibility" Width="110" SortMemberPath="Visible" CanUserSort="True">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <materialdesign:PackIcon Width="25" Height="25" HorizontalAlignment="Center">
+                                                <materialdesign:PackIcon.Style>
+                                                    <Style TargetType="materialdesign:PackIcon">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Visible}" Value="0">
+                                                                <Setter Property="Kind" Value="EyeOff"/>
+                                                                <Setter Property="Foreground" Value="{DynamicResource RemovedItem}"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Visible}" Value="1">
+                                                                <Setter Property="Kind" Value="Eye"/>
+                                                                <Setter Property="Foreground" Value="{DynamicResource NewItem}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </materialdesign:PackIcon.Style>
+                                            </materialdesign:PackIcon>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Name" Binding="{Binding SoftwareName}" Width="300"/>
+                                <DataGridTextColumn Header="Found Version" Binding="{Binding FoundVersion}" Width="200"/>
+                                <DataGridTextColumn Header="Required Version" Binding="{Binding Version}" Width="200"/>
+                                <DataGridTextColumn Header="Vendor" Binding="{Binding Vendor}" Width="200"/>
+                                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="200"/>
+                                <DataGridTemplateColumn Header="Comparison" Width="150" SortMemberPath="Comparison" CanUserSort="True">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <materialdesign:PackIcon Width="20" Height="20" HorizontalAlignment="Center">
+                                                    <materialdesign:PackIcon.Style>
+                                                        <Style TargetType="materialdesign:PackIcon">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Comparison}" Value="0">
+                                                                    <Setter Property="Kind" Value="Circle"/>
+                                                                    <Setter Property="Foreground" Value="{DynamicResource OnBackground}"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Comparison}" Value="3">
+                                                                    <Setter Property="Kind" Value="Circle"/>
+                                                                    <Setter Property="Foreground" Value="{DynamicResource 04dp}"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Comparison}" Value="1">
+                                                                    <Setter Property="Kind" Value="Circle"/>
+                                                                    <Setter Property="Foreground" Value="{DynamicResource UpgradedItem}"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Comparison}" Value="2">
+                                                                    <Setter Property="Kind" Value="Circle"/>
+                                                                    <Setter Property="Foreground" Value="{DynamicResource DowngradedItem}"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Comparison}" Value="4">
+                                                                    <Setter Property="Kind" Value="Circle"/>
+                                                                    <Setter Property="Foreground" Value="{DynamicResource RemovedItem}"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Comparison}" Value="5">
+                                                                    <Setter Property="Kind" Value="Circle"/>
+                                                                    <Setter Property="Foreground" Value="{DynamicResource DuplicateItem}"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </materialdesign:PackIcon.Style>
+                                                </materialdesign:PackIcon>
+                                                <materialdesign:PackIcon Width="20" Height="20" HorizontalAlignment="Center">
+                                                    <materialdesign:PackIcon.Style>
+                                                        <Style TargetType="materialdesign:PackIcon">
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Comparison}" Value="0">
+                                                                    <Setter Property="Kind" Value="Equal"/>
+                                                                    <Setter Property="Foreground" Value="{DynamicResource 04dp}"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Comparison}" Value="3">
+                                                                    <Setter Property="Kind" Value="NewReleases"/>
+                                                                    <Setter Property="Foreground" Value="{DynamicResource NewItem}"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Comparison}" Value="1">
+                                                                    <Setter Property="Kind" Value="ArrowUpBold"/>
+                                                                    <Setter Property="Foreground" Value="{DynamicResource 04dp}"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Comparison}" Value="2">
+                                                                    <Setter Property="Kind" Value="ArrowDownBold"/>
+                                                                    <Setter Property="Foreground" Value="{DynamicResource 04dp}"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Comparison}" Value="4">
+                                                                    <Setter Property="Kind" Value="RemoveBold"/>
+                                                                    <Setter Property="Foreground" Value="{DynamicResource 04dp}"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding Comparison}" Value="5">
+                                                                    <Setter Property="Kind" Value="ContentDuplicate"/>
+                                                                    <Setter Property="Foreground" Value="{DynamicResource 04dp}"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </materialdesign:PackIcon.Style>
+                                                </materialdesign:PackIcon>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Grid Grid.Row="2">
+                            <Viewbox HorizontalAlignment="Left">
+                                <Grid Width="900">
+                                    <StackPanel Orientation="Horizontal" Margin="10,0,10,0">
+                                        <TextBlock Text="Total: " Style="{DynamicResource StandardTextBlockText}"/>
+                                        <TextBlock x:Name="verifycomparetotalitems" Style="{DynamicResource StandardTextBlockText}" Margin="0,0,15,0"/>
+                                        <TextBlock Text="Visible: " Style="{DynamicResource StandardTextBlockText}"/>
+                                        <TextBlock x:Name="verifycomparevisibleitems" Style="{DynamicResource StandardTextBlockText}" Margin="0,0,15,0"/>
+                                        <TextBlock Text="Application: " Style="{DynamicResource StandardTextBlockText}"/>
+                                        <TextBlock x:Name="verifycompareapplicationitems" Style="{DynamicResource StandardTextBlockText}" Margin="0,0,15,0"/>
+                                        <TextBlock Text="Registry: " Style="{DynamicResource StandardTextBlockText}"/>
+                                        <TextBlock x:Name="verifycompareregistryitems" Style="{DynamicResource StandardTextBlockText}" Margin="0,0,15,0"/>
+                                        <TextBlock Text="Driver: " Style="{DynamicResource StandardTextBlockText}"/>
+                                        <TextBlock x:Name="verifycomparedriveritems" Style="{DynamicResource StandardTextBlockText}" Margin="0,0,15,0"/>
+                                        <TextBlock Text="Security: " Style="{DynamicResource StandardTextBlockText}"/>
+                                        <TextBlock x:Name="verifysecurityitems" Style="{DynamicResource StandardTextBlockText}" Margin="0,0,15,0"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Viewbox>
+                            <Viewbox HorizontalAlignment="Right">
+                                <Grid x:Name="compareMainButtonGrid" Width="70" Height="16" HorizontalAlignment="Right" Margin="0,0,25,2">
+                                </Grid>
+                            </Viewbox>
+
+                        </Grid>
+
+                        <!--<Grid Grid.Row="1" Margin="10">
+                            <ScrollViewer VerticalScrollBarVisibility="Visible" CanContentScroll="True" Background="Transparent" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+                                
+                            </ScrollViewer>
+                        </Grid>-->
+
+                    </Grid>
+                </Grid>
+
+
+            </materialdesign:Card>
+        </Grid>
+    </Grid>
+</Page>

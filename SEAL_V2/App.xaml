@@ -1,0 +1,225 @@
+﻿<Application x:Class="SEAL_V2.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="MaterialDesignThemes.Wpf.Converters.BrushRoundConverter"
+             xmlns:wpf="MaterialDesignThemes.Wpf"
+             xmlns:local="clr-namespace:SEAL_V2"
+             StartupUri="view/MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="view/themes/dark.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--Text used for clock tope left-->
+            <Style x:Key="TitleBarText" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{DynamicResource OnBackground}"/>
+                <Setter Property="FontSize" Value="42"/>
+                <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </Style>
+
+            <!--Used in status icons-->
+            <Style x:Key="MainStatusText" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{DynamicResource OnBackground}"/>
+                <Setter Property="FontSize" Value="36"/>
+                <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </Style>
+
+            <!--Used in status icons-->
+            <Style x:Key="SubStatusText" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{DynamicResource OnBackground}"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </Style>
+
+            <!--Text used for page titles-->
+            <Style x:Key="PageTitle" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{DynamicResource OnBackground}"/>
+                <Setter Property="FontSize" Value="42"/>
+                <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Margin" Value="10,10,0,0"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </Style>
+
+            <!--Text used for card titles centered-->
+            <Style x:Key="CardTitleCenter" TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{DynamicResource OnBackground}"/>
+                <Setter Property="FontSize" Value="42"/>
+                <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Margin" Value="10,10,0,0"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </Style>
+
+            <!--Standard card-->
+            <Style x:Key="CardOnBackground" TargetType="materialdesign:Card">
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="Background" Value="{DynamicResource 04dp}"/>
+                <Setter Property="UniformCornerRadius" Value="20"/>
+                <Setter Property="materialdesign:ShadowAssist.ShadowDepth" Value="Depth4"/>
+            </Style>
+
+            <Style TargetType="{x:Type Button}" x:Key="MaterialDesignPopupBoxButton">
+                <Setter Property="VerticalContentAlignment" Value="Bottom" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="FontSize" Value="36"/>
+                <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                <Setter Property="Padding" Value="16 0 16 16" />
+                <Setter Property="Foreground" Value="{DynamicResource OnBackground}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition GeneratedDuration="0:0:0.3" To="Normal">
+                                                <VisualTransition.GeneratedEasingFunction>
+                                                    <CircleEase EasingMode="EaseOut"/>
+                                                </VisualTransition.GeneratedEasingFunction>
+                                            </VisualTransition>
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState Name="Normal"/>
+                                        <VisualState Name="MouseOver">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="MouseOverBorder" Storyboard.TargetProperty="Opacity" To="0.1" Duration="0"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState Name="Disabled">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.48" Duration="0"/>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Border x:Name="MouseOverBorder" Opacity="0" Background="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"/>
+                                <materialdesign:Ripple Feedback="{TemplateBinding Foreground, Converter={StaticResource BrushRoundConverter}}"
+                                    Focusable="False"
+                                    MinHeight="48"
+                                    Content="{TemplateBinding Content}"
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"                                                                
+                                    Padding="{TemplateBinding Padding}"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="PopupBoxButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignPopupBoxButton}">
+                <Setter Property="Foreground" Value="{DynamicResource OnBackground}"/>
+                <Setter Property="FontSize" Value="36"/>
+                <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Margin" Value="10,10,0,0"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </Style>
+
+            <Style x:Key="StandardTextBlockText" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="Foreground" Value="{DynamicResource OnBackground}"/>
+            </Style>
+
+            <Style x:Key="DataGridColumnHeaderStyle1" TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                <Setter Property="Foreground" Value="{DynamicResource OnBackground}"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="AlertTextBlockText" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Foreground" Value="{DynamicResource ErrorStartColor}"/>
+            </Style>
+
+            <Style x:Key="LogInTextBox" TargetType="TextBox">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseDirectlyOver"  Value="true">
+                        <Setter Property = "BorderBrush" Value="Yellow"/>
+                    </Trigger>
+                </Style.Triggers>
+                <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="Foreground" Value="{DynamicResource OnBackground}"/>
+                <Setter Property="Background" Value="{DynamicResource 02dp}"/>
+                <Setter Property="BorderThickness" Value="2"/>
+            </Style>
+
+            <Style x:Key="LogInPasswordTextBox" TargetType="PasswordBox">
+                <Style.Triggers>
+                    <Trigger Property="IsMouseDirectlyOver"  Value="true">
+                        <Setter Property = "BorderBrush" Value="Yellow"/>
+                    </Trigger>
+                </Style.Triggers>
+                <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="Foreground" Value="{DynamicResource OnBackground}"/>
+                <Setter Property="Background" Value="{DynamicResource 02dp}"/>
+                <Setter Property="BorderThickness" Value="2"/>
+            </Style>
+
+            <Style x:Key="RoundCornerButton" TargetType="{x:Type Button}">
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="1"/>
+                <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="Foreground" Value="{DynamicResource OnBackground}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid x:Name="grid">
+                                <Border x:Name="border" CornerRadius="20" BorderBrush="{x:Null}" BorderThickness="0" Background="{DynamicResource 24dp}">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          TextElement.FontWeight="Bold">
+                                    </ContentPresenter>
+                                </Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" TargetName="border" Value="{DynamicResource 16dp}">
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="BorderBrush" TargetName="border" Value="#FF33962B"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" TargetName="grid" Value="0.25"/>
+                                </Trigger>
+
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                        
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+        </ResourceDictionary>
+        
+    </Application.Resources>
+    
+    
+    
+</Application>

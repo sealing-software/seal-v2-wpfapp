@@ -1,0 +1,31 @@
+﻿<Page x:Class="SEAL_V2.view.AccountPopupAccount"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:SEAL_V2.view"
+      mc:Ignorable="d" 
+      Title="AccountPopupAccount">
+
+    <Grid>
+        <materialdesign:Card Style="{DynamicResource CardOnBackground}">
+            <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                <TextBlock Text="Details" Style="{DynamicResource MainStatusText}" FontSize="50" Margin="0,0,0,0"/>
+                <Separator x:Name="DetailsSeparator" Background="{DynamicResource 16dp}" Height="10" Margin="10,0,10,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Username:" Style="{DynamicResource StandardTextBlockText}" FontSize="40"/>
+                    <TextBlock x:Name="username" Style="{DynamicResource StandardTextBlockText}" Margin="10,0,0,0" FontSize="40"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                    <TextBlock Text="Name:" Style="{DynamicResource StandardTextBlockText}" FontSize="40"/>
+                    <TextBlock x:Name="displayname" Style="{DynamicResource StandardTextBlockText}" Margin="10,0,0,0" FontSize="40"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                    <TextBlock Text="Group:" Style="{DynamicResource StandardTextBlockText}" FontSize="40"/>
+                    <TextBlock x:Name="group" Style="{DynamicResource StandardTextBlockText}" Margin="10,0,0,0" FontSize="40"/>
+                </StackPanel>
+            </StackPanel>
+        </materialdesign:Card>
+    </Grid>
+</Page>

@@ -1,0 +1,187 @@
+﻿<Page x:Class="SEAL_V2.view.HomeSystemPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:SEAL_V2.view"
+      mc:Ignorable="d" 
+      Title="HomeSystemPage">
+
+    <Grid Height="auto" Width="auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Viewbox Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Grid>
+                    <Grid x:Name="MainView" Height="100" Width="290" Margin="5" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="1.70*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <materialdesign:PackIcon Kind="Computer" Foreground="{DynamicResource OnBackground}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Width="80"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <materialdesign:PackIcon Name="assignStatusIcon" Kind="Warning" Foreground="Yellow" Height="10" Width="10" VerticalAlignment="Top" Margin="0,-9,3,0"/>
+                                <TextBlock x:Name="assignStatus" Text="Not Assigned" FontSize="9" Style="{DynamicResource StandardTextBlockText}" Margin="0,-10,0,0" VerticalAlignment="Top"/>
+                            </StackPanel>
+                            <Grid x:Name="duplicateModelGrid" HorizontalAlignment="Center" Width="60" Height="10" Margin="0,2,0,0" Visibility="Collapsed">
+                                <Rectangle Fill="{DynamicResource 24dp}" Width="60" Margin="0,0,0,0" Height="10" HorizontalAlignment="Center" VerticalAlignment="Top" RadiusX="5" RadiusY="5" Visibility="Visible"/>
+                                <TextBlock x:Name="duplicateModels" Text="Multiple models found" Style="{DynamicResource StandardTextBlockText}" Foreground="Gray" FontSize="5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            </Grid>
+                        </StackPanel>
+                        <Grid Grid.Column="1">
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="10">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Machine Name: " FontSize="10" Style="{DynamicResource StandardTextBlockText}"/>
+                                    <TextBlock x:Name="machineNameText" FontSize="10" Style="{DynamicResource StandardTextBlockText}"/>
+                                </StackPanel>
+                                <StackPanel x:Name="customNameView"  Orientation="Horizontal" Visibility="Collapsed">
+                                    <TextBlock x:Name="CustomNameLabel" Text="Custom Name: " FontSize="10" Style="{DynamicResource StandardTextBlockText}"/>
+                                    <TextBlock x:Name="customNameText" FontSize="10" Style="{DynamicResource StandardTextBlockText}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Model: " FontSize="10" Style="{DynamicResource StandardTextBlockText}"/>
+                                    <TextBlock x:Name="modelText" FontSize="10" Style="{DynamicResource StandardTextBlockText}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Manufacturer: " FontSize="10" Style="{DynamicResource StandardTextBlockText}"/>
+                                    <TextBlock x:Name="manufacturerText" FontSize="10" Style="{DynamicResource StandardTextBlockText}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Serial: " FontSize="10" Style="{DynamicResource StandardTextBlockText}"/>
+                                    <TextBlock x:Name="serialText" FontSize="10" Style="{DynamicResource StandardTextBlockText}"/>
+                                </StackPanel>
+                                <StackPanel x:Name="customVersionView" Orientation="Horizontal" Visibility="Collapsed">
+                                    <TextBlock x:Name="customVersionLabel"  Text="Custom Version: " FontSize="10" Style="{DynamicResource StandardTextBlockText}"/>
+                                    <TextBlock x:Name="customVersionText" FontSize="10" Style="{DynamicResource StandardTextBlockText}"/>
+                                </StackPanel>
+                                <StackPanel x:Name="directoryView" Orientation="Horizontal" Visibility="Collapsed">
+                                    <TextBlock Text="Directory: " FontSize="10" Style="{DynamicResource StandardTextBlockText}"/>
+                                    <TextBlock x:Name="directoryText" FontSize="10" Style="{DynamicResource StandardTextBlockText}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                    <Grid x:Name="AssignView" Height="100" Width="290" Margin="5" Visibility="Collapsed">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="6*"/>
+                            </Grid.RowDefinitions>
+                            <Grid VerticalAlignment="Top">
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid x:Name="URLBackButton" MouseEnter="URLBackButton_MouseEnter" MouseLeave="URLBackButton_MouseLeave" MouseLeftButtonUp="URLBackButton_MouseLeftButtonUp">
+                                        <Rectangle Height="10" Width="15" RadiusX="10" RadiusY="10" Fill="{DynamicResource 24dp}"/>
+                                        <materialdesign:PackIcon Kind="ArrowLeft" Height="10" Foreground="{DynamicResource OnBackground}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Grid>
+                                    <Rectangle Fill="{DynamicResource 24dp}" Width="274" Margin="0,0,0,0" Height="10" HorizontalAlignment="Center" VerticalAlignment="Top" RadiusX="5" RadiusY="5" Visibility="Visible"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="20,-3,0,0">
+                                    <TextBlock x:Name="URLText" Style="{DynamicResource StandardTextBlockText}" FontSize="10" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Grid.Row="1" Grid.ColumnSpan="1" Margin="-60,0,0,0">
+                                <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+                                    <StackPanel x:Name="directoryPanel" Orientation="Vertical" MouseLeftButtonUp="directoryPanel_MouseLeftButtonUp"/>
+                                </ScrollViewer>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid x:Name="EditView" Grid.RowSpan="2" Height="120" Width="290" Margin="0,-10,0,0" Visibility="Collapsed">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="6*"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Nickname: " FontSize="10" Style="{DynamicResource StandardTextBlockText}"/>
+                                    <TextBox x:Name="nicknameText" FontSize="10" Width="225" Style="{DynamicResource LogInTextBox}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="-3,0,0,0">
+                                    <Grid x:Name="registryToggleGrid" Height="15" MouseLeftButtonUp="registryToggleGrid_MouseLeftButtonUp"/>
+                                </StackPanel>
+                                <TextBlock x:Name="toggledescription" Style="{DynamicResource StandardTextBlockText}" Foreground="Gray" FontSize="7" TextWrapping="Wrap" Width="260" HorizontalAlignment="Left"/>
+                                <Grid x:Name="RegistryVersionGrid">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                            <TextBlock Text="Registry key: " FontSize="10" Style="{DynamicResource StandardTextBlockText}"/>
+                                            <TextBox x:Name="RegistryKey" FontSize="10" Width="215" Style="{DynamicResource LogInTextBox}" TextChanged="RegistryKey_TextChanged"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                            
+                                            <ComboBox x:Name="RegValues" Width="100" Height="15" Style="{DynamicResource MaterialDesignDataGridComboBox}" Background="{DynamicResource 01dp}">
+                                                <ComboBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid Width="100">
+                                                            <TextBlock Text="{Binding}" Foreground="{DynamicResource OnBackground}" Margin="0,0,0,0" FontSize="10" FontFamily="Segoe UI Semibold" Width="100" HorizontalAlignment="Left"/>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </ComboBox.ItemTemplate>
+                                                <ComboBox.ItemContainerStyle>
+                                                    <Style TargetType="{x:Type ComboBoxItem}">
+                                                        <Setter Property="BorderBrush" Value="{DynamicResource 06dp}"/>
+                                                        <Setter Property="Background" Value="{DynamicResource 06dp}"/>
+                                                    </Style>
+                                                </ComboBox.ItemContainerStyle>
+                                            </ComboBox>
+                                            <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                                                <TextBlock Text="Value: " FontSize="10" Style="{DynamicResource StandardTextBlockText}"/>
+                                                <TextBox x:Name="RegistryValue" FontSize="10" Width="141" Style="{DynamicResource LogInTextBox}" TextChanged="RegistryValue_TextChanged"/>
+                                            </StackPanel>
+                                            <Grid Margin="80,0,0,0" x:Name="GetValueGrid"/>
+                                        </StackPanel>
+                                        <TextBlock x:Name="versionText" FontSize="7" Style="{DynamicResource StandardTextBlockText}" HorizontalAlignment="Center"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                    <Grid x:Name="DeleteView" Grid.RowSpan="2" Height="120" Width="290" Margin="0,-10,0,0" Visibility="Collapsed">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="6*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="1" Text="Delete System?" FontSize="20" Style="{DynamicResource StandardTextBlockText}" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Viewbox>
+            <Viewbox Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,8">
+                <Grid>
+                    <Grid x:Name="ButtonGrid" Grid.ColumnSpan="2" Grid.Row="1">
+                        <StackPanel x:Name="ButtonPanel" Orientation="Horizontal" HorizontalAlignment="Center"/>
+                    </Grid>
+                    <Grid x:Name="AuditButtonGrid" Grid.Row="2" Grid.ColumnSpan="2">
+                        <StackPanel x:Name="AuditButtonPanel" Orientation="Horizontal" HorizontalAlignment="Center"/>
+                    </Grid>
+                    <Grid x:Name="AssignButtonGrid" Grid.Row="2" Grid.ColumnSpan="2">
+                        <StackPanel x:Name="AssignButtonPanel" Orientation="Horizontal" HorizontalAlignment="Center"/>
+                    </Grid>
+                    <Grid x:Name="EditButtonGrid" Grid.Row="2" Grid.ColumnSpan="2">
+                        <StackPanel x:Name="EditButtonPanel" Orientation="Horizontal" HorizontalAlignment="Center"/>
+                    </Grid>
+                    <Grid x:Name="DeleteButtonGrid" Grid.Row="2" Grid.ColumnSpan="2">
+                        <StackPanel x:Name="DeleteButtonPanel" Orientation="Horizontal" HorizontalAlignment="Center"/>
+                    </Grid>
+                </Grid>
+            </Viewbox>
+            <Grid x:Name="AuditView" Margin="10,0,10,0">
+                <DataGrid x:Name="SystemsGrid" Background="{x:Null}" Foreground="{DynamicResource OnBackground}" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" FontSize="20" FontFamily="Segoe UI Semibold" CanUserSortColumns="False" MouseLeftButtonUp="SystemsGrid_MouseLeftButtonUp">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Model" Binding="{Binding modelname}"/>
+                        <DataGridTextColumn Header="Directory" Binding="{Binding fulldirloca}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+        <Viewbox HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Grid>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</Page>

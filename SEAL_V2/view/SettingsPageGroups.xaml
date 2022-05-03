@@ -1,0 +1,182 @@
+﻿<Page x:Class="SEAL_V2.view.SettingsPageGroups"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:controls="clr-namespace:SEAL_V2.view.usercontrolobjects"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:SEAL_V2.view"
+      mc:Ignorable="d" 
+      Title="SettingsPageGroups">
+
+    <Grid>
+        <materialdesign:Card Style="{DynamicResource CardOnBackground}" Width="Auto" Height="Auto">
+            <materialdesign:DialogHost x:Name="Dialog_Box" CloseOnClickAway="True">
+                <materialdesign:DialogHost.DialogContent>
+                    <Grid x:Name="Dialog_Content"/>
+                </materialdesign:DialogHost.DialogContent>
+                <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="15*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Viewbox x:Name="TitleViewBox" Stretch="Uniform" HorizontalAlignment="Center">
+                    <TextBlock x:Name="GroupsTitle" Text="Groups" Style="{DynamicResource CardTitleCenter}" Margin="10,0,10,0"/>
+                </Viewbox>
+                <Viewbox x:Name="ReturnViewBox" Stretch="Uniform" HorizontalAlignment="Left" Visibility="Hidden" MouseLeftButtonUp="ReturnViewBox_MouseLeftButtonUp">
+                    <TextBlock x:Name="GroupsReturnTitle" Text="&lt;Groups" Style="{DynamicResource CardTitleCenter}" Foreground="{DynamicResource SecondaryColor}" Margin="10,0,10,0" MouseEnter="GroupsReturnTitle_MouseEnter" MouseLeave="GroupsReturnTitle_MouseLeave"/>
+                </Viewbox>
+                    <Grid Grid.Row="1">
+                        <Grid>
+                            <DataGrid x:Name="GroupList" Margin="20,0,20,10" ItemsSource="{Binding groupList}" AutoGenerateColumns="False" CanUserReorderColumns="False" IsReadOnly="True" SelectionMode="Single" Background="{x:Null}">
+                                <DataGrid.ColumnHeaderStyle>
+                                    <Style BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}" TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="FontSize" Value="20"/>
+                                        <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource OnBackground}"/>
+                                    </Style>
+                                </DataGrid.ColumnHeaderStyle>
+                                <DataGrid.RowStyle>
+                                    <Style BasedOn="{StaticResource MaterialDesignDataGridRow}" TargetType="DataGridRow">
+                                        <Setter Property="FontSize" Value="20"/>
+                                        <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                                        <Setter Property="Foreground" Value="{Binding brushColor}"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <EventSetter Event="MouseEnter" Handler="DataGridRow_MouseEnter"/>
+                                        <EventSetter Event="MouseLeave" Handler="DataGridRow_MouseLeave"/>
+                                        <EventSetter Event="MouseLeftButtonUp" Handler="DataGridRow_MouseLeftButtonUp"/>
+                                    </Style>
+                                </DataGrid.RowStyle>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn x:Name="groupNameCell" Header="Name" Binding="{Binding name}"/>
+                                    <DataGridTextColumn Header="Accounts" Binding="{Binding qty}" Foreground="{DynamicResource OnBackground}" Width="*"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Grid x:Name="EditGroup" Margin="10,10,10,0" Visibility="Collapsed">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <materialdesign:Card Style="{DynamicResource CardOnBackground}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="15*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Viewbox Stretch="Uniform" HorizontalAlignment="Left" Margin="5,0,5,0">
+                                            <TextBlock Text="Options" Style="{DynamicResource StandardTextBlockText}"/>
+                                        </Viewbox>
+                                        <controls:Separator x:Name="OptionsSeparator" Height="1" Margin="5,0,5,0" Background="{DynamicResource Separator}" VerticalAlignment="Bottom"/>
+                                        <Viewbox Stretch="Uniform" VerticalAlignment="Top" Grid.Row="1" Margin="10,5,10,0">
+                                            <StackPanel x:Name="GroupsOptions" Orientation="Vertical"/>
+                                        </Viewbox>
+                                    </Grid>
+                                </materialdesign:Card>
+                                <materialdesign:Card Style="{DynamicResource CardOnBackground}" Grid.Column="1">
+                                    <Frame x:Name="GroupsSettingsPage" NavigationUIVisibility="Hidden"/>
+                                </materialdesign:Card>
+                            </Grid>
+                            <Grid x:Name="NewGroup" Margin="10,10,10,0" Visibility="Collapsed">
+                                <StackPanel Orientation="Vertical">
+                                    <Viewbox Stretch="Uniform">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="170"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="60"/>
+                                                <RowDefinition Height="40"/>
+                                                <RowDefinition Height="60"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Text="Group Name:" Margin="10,20,5,0" Style="{DynamicResource StandardTextBlockText}"/>
+                                            <TextBox x:Name="GroupNameText" Grid.Column="1" HorizontalAlignment="Left" Style="{DynamicResource LogInTextBox}" Height="40" Width="500" VerticalAlignment="Top" Margin="5,20,450,0" TextChanged="GroupNameText_TextChanged"/>
+                                            <TextBlock x:Name="GroupNameErrorText" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" Style="{DynamicResource AlertTextBlockText}" Height="40" Width="500" VerticalAlignment="Top" Margin="5,0,0,0"/>
+                                            <TextBlock Text="Group Color:" Grid.Row="2" Margin="10,20,5,0" VerticalAlignment="Center" Style="{DynamicResource StandardTextBlockText}"/>
+                                            <xctk:ColorPicker Name="ClrPcker_Background" Grid.Row="2" Grid.Column="1" SelectedColor="White" VerticalAlignment="Center" Margin="5,20,5,0" HorizontalAlignment="Left" Height="20" Width="500"></xctk:ColorPicker>
+                                        </Grid>
+                                    </Viewbox>
+                                </StackPanel>
+                                <!--<StackPanel Orientation="Vertical">
+                            <Viewbox Stretch="Uniform">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Group Name:" Margin="10,20,5,0" Style="{DynamicResource StandardTextBlockText}"/>
+                                    <TextBox x:Name="GroupNameText" Style="{DynamicResource LogInTextBox}" Height="40" Width="500" VerticalAlignment="Top" Margin="5,20,450,0"/>
+                                </StackPanel>
+                            </Viewbox>
+                            <Viewbox Stretch="Uniform">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Group Color:" Margin="10,20,5,0" Style="{DynamicResource StandardTextBlockText}"/>
+                                    <xctk:ColorPicker Name="ClrPcker_Background" Grid.Row="1" SelectedColor="White"  Margin="10,20,740,0" VerticalAlignment="Center"  HorizontalAlignment="Center" Height="20" Width="200"></xctk:ColorPicker>
+                                </StackPanel>
+                            </Viewbox>
+                        </StackPanel>-->
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                <Grid Grid.Row="2" Margin="10,0,10,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="RemoveGroupButton" Style="{DynamicResource RoundCornerButton}" HorizontalAlignment="Stretch" Margin="10,0,5,5" Visibility="Hidden" Click="RemoveGroupButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialdesign:PackIcon Kind="Delete" Width="30" Height="30" Foreground="{DynamicResource RemovedItem}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="RemoveUserButton" Style="{DynamicResource RoundCornerButton}" HorizontalAlignment="Stretch" Margin="10,0,5,5" Visibility="Hidden" Click="RemoveUserButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialdesign:PackIcon Kind="Delete" Width="30" Height="30" Foreground="{DynamicResource RemovedItem}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="EditGroupButton" Style="{DynamicResource RoundCornerButton}" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5,0,5,5" Visibility="Hidden" Click="EditGroupButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialdesign:PackIcon Kind="Edit" Width="30" Height="30" Foreground="{DynamicResource EditItem}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                        <Button x:Name="EditUserButton" Style="{DynamicResource RoundCornerButton}" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5,0,5,5" Visibility="Hidden" Click="EditUserButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialdesign:PackIcon Kind="Edit" Width="30" Height="30" Foreground="{DynamicResource EditItem}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="UserShortcutButton" Style="{DynamicResource RoundCornerButton}" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5,0,5,5" Visibility="Hidden" Click="UserShortcutButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialdesign:PackIcon Kind="Edit" Width="30" Height="30" Foreground="{DynamicResource EditItem}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="AddGroupButton" Style="{DynamicResource RoundCornerButton}" Grid.Column="2" HorizontalAlignment="Stretch" Margin="5,0,10,5" Click="AddGroupButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialdesign:PackIcon Kind="Plus" Width="30" Height="30" Foreground="{DynamicResource NewItem}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="SaveColorButton" Style="{DynamicResource RoundCornerButton}" Grid.Column="2" HorizontalAlignment="Stretch" Margin="5,0,10,5" Visibility="Hidden" Click="SaveColorButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialdesign:PackIcon Kind="ContentSave" Width="30" Height="30" Foreground="{DynamicResource NewItem}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="SaveNameButton" Style="{DynamicResource RoundCornerButton}" Grid.Column="2" HorizontalAlignment="Stretch" Margin="5,0,10,5" Visibility="Hidden" Click="SaveNameButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialdesign:PackIcon Kind="ContentSave" Width="30" Height="30" Foreground="{DynamicResource NewItem}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="SaveGroupButton" Style="{DynamicResource RoundCornerButton}" Grid.Column="2" HorizontalAlignment="Stretch" Margin="5,0,10,5" Visibility="Hidden" Click="SaveGroupButton_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <materialdesign:PackIcon Kind="ContentSave" Width="30" Height="30" Foreground="{DynamicResource NewItem}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                        <Button x:Name="SavePermissionsButton" Style="{DynamicResource RoundCornerButton}" Grid.Column="2" HorizontalAlignment="Stretch" Margin="5,0,10,5" Visibility="Hidden" Click="SavePermissionsButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <materialdesign:PackIcon Kind="ContentSave" Width="30" Height="30" Foreground="{DynamicResource NewItem}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </Grid>
+            </materialdesign:DialogHost>
+        </materialdesign:Card>
+    </Grid>
+</Page>
